@@ -1,0 +1,203 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Tavern Theme - Warm candlelight and aged parchment */
+  --background: oklch(0.12 0.02 45);
+  --foreground: oklch(0.92 0.03 75);
+  --card: oklch(0.16 0.025 40);
+  --card-foreground: oklch(0.92 0.03 75);
+  --popover: oklch(0.14 0.02 42);
+  --popover-foreground: oklch(0.92 0.03 75);
+  --primary: oklch(0.72 0.15 55);
+  --primary-foreground: oklch(0.12 0.02 45);
+  --secondary: oklch(0.22 0.03 38);
+  --secondary-foreground: oklch(0.88 0.04 70);
+  --muted: oklch(0.20 0.02 40);
+  --muted-foreground: oklch(0.65 0.04 60);
+  --accent: oklch(0.55 0.18 30);
+  --accent-foreground: oklch(0.95 0.02 75);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.95 0.02 75);
+  --border: oklch(0.28 0.04 45);
+  --input: oklch(0.20 0.025 42);
+  --ring: oklch(0.72 0.15 55);
+  --chart-1: oklch(0.72 0.15 55);
+  --chart-2: oklch(0.55 0.18 30);
+  --chart-3: oklch(0.50 0.12 140);
+  --chart-4: oklch(0.65 0.10 250);
+  --chart-5: oklch(0.60 0.15 320);
+  --radius: 0.5rem;
+  
+  /* Custom Tavern Colors */
+  --parchment: oklch(0.85 0.06 75);
+  --parchment-dark: oklch(0.75 0.07 70);
+  --gold: oklch(0.78 0.16 85);
+  --gold-dark: oklch(0.60 0.14 80);
+  --flame: oklch(0.70 0.20 50);
+  --wood: oklch(0.25 0.05 50);
+  --wood-light: oklch(0.35 0.06 55);
+}
+
+@theme inline {
+  --font-sans: 'Cinzel', 'Times New Roman', serif;
+  --font-serif: 'Cinzel Decorative', 'Times New Roman', serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  
+  --color-parchment: var(--parchment);
+  --color-parchment-dark: var(--parchment-dark);
+  --color-gold: var(--gold);
+  --color-gold-dark: var(--gold-dark);
+  --color-flame: var(--flame);
+  --color-wood: var(--wood);
+  --color-wood-light: var(--wood-light);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Flickering flame animation */
+@keyframes flicker {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  25% { opacity: 0.9; transform: scale(1.02) rotate(1deg); }
+  50% { opacity: 1; transform: scale(0.98) rotate(-1deg); }
+  75% { opacity: 0.95; transform: scale(1.01) rotate(0.5deg); }
+}
+
+@keyframes glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(255, 180, 80, 0.4), 0 0 40px rgba(255, 150, 50, 0.2);
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(255, 180, 80, 0.6), 0 0 60px rgba(255, 150, 50, 0.3);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes particle-float {
+  0% { 
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { 
+    transform: translateY(-100vh) translateX(50px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes parchment-texture {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.02); }
+}
+
+.animate-flicker {
+  animation: flicker 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 4s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 200, 100, 0.3), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+.animate-particle {
+  animation: particle-float 10s linear infinite;
+}
+
+.parchment-bg {
+  background: linear-gradient(135deg, 
+    var(--parchment) 0%, 
+    var(--parchment-dark) 50%, 
+    var(--parchment) 100%
+  );
+  animation: parchment-texture 8s ease-in-out infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--wood-light);
+  border-radius: 6px;
+  border: 2px solid var(--background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-dark);
+}
+
+/* Noise texture overlay */
+.noise-overlay {
+  position: relative;
+}
+
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
