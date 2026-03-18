@@ -2,11 +2,13 @@
   "name": "my-project",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://dankoo001.github.io/TavernHeroes",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "export": "next export"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
